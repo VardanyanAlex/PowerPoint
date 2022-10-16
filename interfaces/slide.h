@@ -4,10 +4,11 @@
 
 #include <deque>
 
-class CSlide
+#include "pwpt_islide.h"
+
+class CSlide : public pwpt::ISlide
 {
 public:
-    using size_type     = size_t;
 
     CSlide() = default;
 
@@ -20,28 +21,28 @@ public:
     CSlide& operator=(CSlide&&) noexcept;
 
     // Capacity
-    bool Empty();
-    size_type Count();
+    bool IsEmpty() const override;
+    size_type GetCount() const override;
 
     // Modifiers
-    
+
     // clear all objects
-    void Clear();
+    void Clear() override;
 
     // clear all objects in specified area
-    void Clear(QPointF pLeftTop, QPointF pRightBottom);
+    void Clear(QPointF pLeftTop, QPointF pRightBottom) override;
 
-    void Remove(Iterator);
+    void Remove(Iterator) override;
 
-    void Remove(QPointF pObjectsCenter);
+    void Remove(QPointF pObjectsCenter) override;
 
-    void Add(CObject&& oObject, QPointF pLeftTop = CSlidesCenter);
+    void Add(CObject&& oObject, QPointF pLeftTop = CSlidesCenter) override;
 
     // if input qpoint is in any shape returns it
-    CObject& GetObject(QPointF);
+    CObject& GetObject(QPointF) override;
 
     // return objects group in area from leftTop to rightBottom
-    CObjectsGroup GetObjects(QPointF pLeftTop, QPointF pRightBottom);
+    CObjectsGroup GetObjects(QPointF pLeftTop, QPointF pRightBottom) override;
 
 private:
 	std::deque<CObject> m_aObjects;
