@@ -5,21 +5,20 @@
 #include <iostream>
 
 #include "parser.h"
+#include "pwpt_icommandline.h"
 
-class CConsole
+class CConsole : public pwpt::Command::ICommandLine
 {
 public:
 	CConsole();
-	CCommand Run();
+	void Run() override;
 	//while(true)
 	//GetInput()
-	//Parse- provides material for CCommand
+	//Parse- returns CCommand
 	//emit CCommand
 
-
-
-
-
+// signals:
+	void commandConstructed(pwpt::ICommand_Ptr) override;
 
 private:
 	std::istream* GetInput();

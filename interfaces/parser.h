@@ -4,10 +4,12 @@
 
 #include <string>
 
+#include "pwpt_icommand.h"
+
 class CParser
 {
 public:
-	void Parse(std::stringstream const& sInput);
+	pwpt::ICommand_Ptr Parse(std::stringstream const& sInput);
 
 private:
 	CTokenizer	m_oTokenizer;

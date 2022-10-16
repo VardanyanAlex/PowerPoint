@@ -4,9 +4,9 @@
 
 #include <list>
 
-#include "slide.h"
+#include "pwpt_islidecontainer.h"
 
-class CSlideShow
+class CSlideShow : public pwpt::ISlideContainer
 {
 public:
     using size_type = size_t;

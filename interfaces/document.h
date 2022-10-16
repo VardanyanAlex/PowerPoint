@@ -5,7 +5,7 @@
 #include <memory>
 
 #include "console.h"
-#include "slideshow.h"
+#include "pwpt_islidecontainer.h"
 
 namespace Document
 {
@@ -31,7 +31,7 @@ class CPwPtDocument
 public:
 	CPwPtDocument();
 
-	std::shared_ptr<CSlideShow> GetSlideShow();
+	pwpt::SlideContainer_SharedPtr GetSlideShow();
 
 	void SetTool();
 	ETool Tool();
@@ -40,7 +40,7 @@ public:
 	ESize LineWidth();
 
 private:
-	std::unique_ptr<CSlideShow> m_pSlideShow;
+	pwpt::SlideContainer_Ptr	m_pSlideShow;
 	ETool						m_eSelectedTool;
 	//QColor					m_oSelectedColor;
 	ESize						m_eLineWidth;

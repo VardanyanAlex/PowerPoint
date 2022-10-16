@@ -5,6 +5,12 @@
 #include <memory>
 
 #include "document.h"
+#include "pwpt_icommandhandler.h"
+#include "pwpt_icommandline.h"
+#include "pwpt_itaskmachine.h"
+
+namespace pwpt
+{
 
 namespace App
 {
@@ -16,18 +22,17 @@ public:
 	void Exec();
 
 private:
-	void RunCommand(CCommand&&);
-	// provide CEditor to CCommand and run it 
+	ICommandLine_Ptr		m_pConsole;
+	ICommandHandler_Ptr		m_pCommandHandler;
+	IMachine_ptr			m_pActionMachine;
 
 private:
-	std::unique_ptr<CConsole>		m_pConsole;
-	std::unique_ptr<CTaskMachine>	m_pTaskMachine;
-
-private:
-	std::unique_ptr<Document::CPwPtDocument>		m_pDocument;
+	Document::CPwPtDocument		m_oDocument;
 
 }; // class PwPtApplication
 
 } // namespace App
+
+} // namespace pwpt
 
 #endif // _POWERPOINT_MAIN_APPLICATION_HPP_
