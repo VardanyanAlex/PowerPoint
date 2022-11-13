@@ -1,0 +1,13 @@
+﻿  moc pwpt_icommandline.h
+  commandhandler.cpp
+  main.cpp
+  powerpoint.cpp
+  moc_powerpoint.cpp
+  moc_pwpt_icommandline.cpp
+commandhandler.obj : error LNK2001: unresolved external symbol "public: virtual enum pwpt::EState __cdecl pwpt::CCommandHandler::Handle(class std::shared_ptr<class pwpt::Command::ICommand> &)" (?Handle@CCommandHandler@pwpt@@UEAA?AW4EState@2@AEAV?$shared_ptr@VICommand@Command@pwpt@@@std@@@Z)
+powerpoint.obj : error LNK2001: unresolved external symbol "public: virtual class std::shared_ptr<class pwpt::ISlideContainer> __cdecl pwpt::Document::CPwPtDocument::GetSlideShow(void)" (?GetSlideShow@CPwPtDocument@Document@pwpt@@UEAA?AV?$shared_ptr@VISlideContainer@pwpt@@@std@@XZ)
+powerpoint.obj : error LNK2001: unresolved external symbol "public: virtual class std::shared_ptr<class pwpt::ISlide> __cdecl pwpt::Document::CPwPtDocument::GetSlide(unsigned __int64)" (?GetSlide@CPwPtDocument@Document@pwpt@@UEAA?AV?$shared_ptr@VISlide@pwpt@@@std@@_K@Z)
+powerpoint.obj : error LNK2001: unresolved external symbol "public: virtual unsigned __int64 & __cdecl pwpt::Document::CPwPtDocument::GetCurrentSlideIndex(void)" (?GetCurrentSlideIndex@CPwPtDocument@Document@pwpt@@UEAAAEA_KXZ)
+powerpoint.obj : error LNK2001: unresolved external symbol "public: virtual enum pwpt::Document::ETool & __cdecl pwpt::Document::CPwPtDocument::GetTool(void)" (?GetTool@CPwPtDocument@Document@pwpt@@UEAAAEAW4ETool@23@XZ)
+powerpoint.obj : error LNK2001: unresolved external symbol "public: virtual enum pwpt::Document::ESize & __cdecl pwpt::Document::CPwPtDocument::GetLineWidth(void)" (?GetLineWidth@CPwPtDocument@Document@pwpt@@UEAAAEAW4ESize@23@XZ)
+C:\Alex\OOP_homework\PowerPoint\x64\Debug\PowerPoint.exe : fatal error LNK1120: 6 unresolved externals
