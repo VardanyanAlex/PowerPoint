@@ -16,6 +16,9 @@ namespace Command
 //////////////////////////////////////////////////////////////////////
 // CTokenizer class
 //////////////////////////////////////////////////////////////////////
+
+
+
 class CTokenizer
 {
 public:
@@ -28,11 +31,11 @@ public:
 
 // Helper functions
 private:
-	bool IsOperationKeyword(std::string const&) const;
-	bool IsOptionKeyword(std::string const&) const;
 	bool IsPunct(std::string const&) const;
-	bool IsNumberValue(std::string const&) const;
-	bool IsTextValue(std::string const&) const;
+	bool IsNumber(std::string const&) const;
+	bool IsWord(std::string const&) const;
+
+	//void PrepareTranslates();
 
 	// Translates gotten lexemme to int for one of EOperation, EOption or EPunct
 	//int TranslateToInt(std::string const&, int&) const;

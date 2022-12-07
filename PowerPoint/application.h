@@ -7,7 +7,7 @@
 #include "document.h"
 #include "pwpt_icommandhandler.h"
 #include "pwpt_icommandline.h"
-#include "pwpt_itaskmachine.h"
+#include "pwpt_imachine.h"
 
 namespace pwpt
 {
@@ -15,21 +15,28 @@ namespace pwpt
 namespace App
 {
 
-class PwPtApplication
-{
+class CApplication
+{ // singleton
 public:
-	PwPtApplication();
-	void Exec();
+	CApplication(CApplication const&) = delete;
+	CApplication& operator=(CApplication const&) = delete;
+
+	static CApplication& Instance();
+
+	void Run();
+	PwPtDoc_SPtr GetDocument() const;
 
 private:
-	ICommandLine_Ptr		m_pConsole = nullptr;
-	ICommandHandler_Ptr		m_pCommandHandler = nullptr;
-	//IMachine_ptr			m_pActionMachine;
+	CApplication();
 
 private:
-	Document::CPwPtDocument		m_oDocument;
+	ICommandLine_UPtr		m_pConsole = nullptr;
+	ICommandHandler_UPtr	m_pCommandHandler = nullptr;
+	IMachine_SPtr			m_pActionMachine;
 
-}; // class PwPtApplication
+	PwPtDoc_SPtr			m_pDocument;
+
+}; // class CApplication
 
 } // namespace App
 

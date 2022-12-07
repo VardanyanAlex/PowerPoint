@@ -9,19 +9,31 @@ namespace pwpt
 namespace App
 {
 
-PwPtApplication::PwPtApplication()
-	//: m_pConsole{ std::make_unique<CCommandLine>(new CCommandLine{}) }
+CApplication::CApplication()
 {
-	m_pConsole = std::unique_ptr<ICommandLine>(new CCommandLine);
-	m_pCommandHandler = std::unique_ptr<IHandler>(new CCommandHandler);
+	m_pConsole = ICommandLine_UPtr(new CCommandLine);
+	m_pCommandHandler = ICommandHandler_UPtr(new CCommandHandler);
 
-	m_pConsole->sigCommandConstructed.connect(m_pCommandHandler->OnCommandConstructed);
+	QObject::connect(m_pConsole.get(), SIGNAL(InputDetected(std::string const&)),
+		m_pCommandHandler.get(), SLOT(OnInputDetected(std::string const&)));
 }
 
-void PwPtApplication::Exec()
+CApplication& CApplication::Instance()
+{ // Meyers' singleton
+	static CApplication oApp;
+
+	return oApp;
+}
+
+void CApplication::Run()
 {
-	ICommand_Ptr p = nullptr;
-	m_pConsole->sigCommandConstructed.emit(std::move(p));
+	m_pConsole->Run();
+	
+}
+
+PwPtDoc_SPtr CApplication::GetDocument() const
+{
+	return m_pDocument;
 }
 
 } // namespace App

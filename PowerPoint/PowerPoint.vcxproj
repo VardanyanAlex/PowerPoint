@@ -72,7 +72,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -90,9 +90,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="actionfactory.cpp" />
+    <ClCompile Include="application.cpp" />
+    <ClCompile Include="commandfactory.cpp" />
+    <ClCompile Include="commandline.cpp" />
+    <ClCompile Include="commandparser.cpp" />
+    <ClCompile Include="commandscomponents,cpp.cpp" />
+    <ClCompile Include="document.cpp" />
+    <ClCompile Include="errorhandling.cpp" />
+    <ClCompile Include="object.cpp" />
+    <ClCompile Include="outputconsole.cpp" />
+    <ClCompile Include="pwpt_iaction.cpp" />
+    <ClCompile Include="token.cpp" />
+    <ClCompile Include="toolbar_actions.cpp" />
     <QtRcc Include="powerpoint.qrc" />
     <QtUic Include="powerpoint.ui" />
     <QtMoc Include="powerpoint.h" />
+    <ClCompile Include="command.cpp" />
     <ClCompile Include="commandhandler.cpp" />
     <ClCompile Include="commandlexer.cpp" />
     <ClCompile Include="commandtokenizer.cpp" />
@@ -102,22 +116,35 @@
     <ResourceCompile Include="PowerPoint.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="actionfactory.h" />
+    <ClInclude Include="application.h" />
     <ClInclude Include="command.h" />
+    <ClInclude Include="commandfactory.h" />
     <ClInclude Include="commandhandler.h" />
     <ClInclude Include="commandlexer.h" />
     <ClInclude Include="commandline.h" />
     <ClInclude Include="commandparser.h" />
+    <ClInclude Include="commandscomponents.h" />
     <ClInclude Include="commandtokenizer.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="errorhandling.h" />
+    <ClInclude Include="machine.h" />
     <ClInclude Include="document.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="outputconsole.h" />
+    <ClInclude Include="pwpt_iaction.h" />
     <ClInclude Include="pwpt_icommand.h" />
+    <ClInclude Include="pwpt_icommand.impl.h" />
+    <ClInclude Include="pwpt_iobject.h" />
+    <ClInclude Include="pwpt_ioutputdevice.h" />
+    <ClInclude Include="toolbar_actions.h" />
+    <ClInclude Include="tools.h" />
     <QtMoc Include="pwpt_icommandhandler.h" />
     <QtMoc Include="pwpt_icommandline.h" />
-    <ClInclude Include="pwpt_idoceditor.h" />
+    <ClInclude Include="pwpt_imachine.h" />
     <ClInclude Include="pwpt_idocument.h" />
     <ClInclude Include="pwpt_islide.h" />
     <ClInclude Include="pwpt_islidecontainer.h" />
-    <ClInclude Include="pwpt_itaskmachine.h" />
     <ClInclude Include="slide.h" />
     <ClInclude Include="slideshow.h" />
     <ClInclude Include="taskmachine.h" />

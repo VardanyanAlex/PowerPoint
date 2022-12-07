@@ -5,60 +5,21 @@
 #include <map>
 #include <string>
 
+#include "commandscomponents.h"
+
 namespace pwpt
 {
 //////////////////////////////////////////////////////////////
 namespace Command
 {
 //////////////////////////////////////////////////////////////
-enum ETokenType
+enum class ETokenType
 {
 	Invalid,
 
-	Command,
-	Option,
-	OptionValue,
+	Number,
+	Word,
 	Punct
-};
-
-enum class EOperation
-{
-	Invalid,
-
-	// toolbar related commands
-	Set,
-	Reset,
-	// slideshow modification related commands
-	AddSlide,
-	Clear,
-	Draw,
-	Remove,
-	Move,
-	Copy,
-	// Persistence related commands
-	Save,
-	Load,
-	// informational commands
-	Print,
-
-	Help
-};
-
-enum class EOption
-{
-	Invalid,
-
-	Shape,
-	Color,
-	Size,
-	All,
-
-	Object,
-
-	Slide,
-
-	From,
-	To
 };
 
 enum class EPunct
@@ -66,27 +27,10 @@ enum class EPunct
 	Invalid,
 
 	Dash,		// '-'
-	Comma		// ','
+	Comma,		// ','
+	LeftBracket,
+	RightBracket
 };
-
-struct SOptionValue
-{
-	SOptionValue() = default;
-	SOptionValue(std::string const& sValue);
-	explicit SOptionValue(unsigned const nValue);
-
-	bool IsValueNumber() const;
-	bool IsValueText() const;
-
-	void SetNumber(int);
-	void SetText(std::string const&);
-
-	bool IsValid() const;
-
-	int			iNumberValue = -1;
-	std::string sTextValue = "";
-};
-using OptionValueMap = std::map<EOption, SOptionValue>;
 
 //////////////////////////////////////////////////////////////
 // SToken struct
@@ -97,12 +41,11 @@ struct SToken
 
 	union
 	{
-		EOperation	eOperation;
-		EOption		eOption;
-		EPunct		ePunct; // e.g. ','  in coordinates representation
+		int iNumber;
+		char cPunct;
 		// . . .
 	};
-	SOptionValue oValue;
+	std::string sWord;
 };
 //////////////////////////////////////////////////////////////
 } // namespace Command

@@ -4,6 +4,7 @@
 
 #include <string>
 
+#include "commandtokenizer.h"
 #include "pwpt_icommand.h"
 
 namespace pwpt
@@ -15,11 +16,10 @@ namespace Command
 class CParser
 {
 public:
-	pwpt::ICommandsList Parse(std::stringstream const& sInput);
+	pwpt::ICommand_SPtr Parse(std::istream& sInput);
 
 private:
 	CTokenizer	m_oTokenizer;
-	CLexer		m_oLexer;
 };
 
 } // namespace Command

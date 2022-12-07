@@ -12,32 +12,7 @@ namespace Command
 //////////////////////////////////////////////////////////////////////
 CTokenizer::CTokenizer()
 {
-    m_oOperationTranslater = {
-        {"set",		EOperation::Set},
-        {"reset",	EOperation::Reset},
-        {"addSlide",EOperation::AddSlide},
-        {"clear",	EOperation::Clear},
-        {"draw",	EOperation::Draw},
-        {"remove",	EOperation::Remove},
-        {"move",	EOperation::Move},
-        {"copy",	EOperation::Copy},
-        {"save",	EOperation::Save},
-        {"load",	EOperation::Load},
-        {"print",	EOperation::Print},
-        {"help",	EOperation::Help}
-    };
-
-    m_oOptionTranslater =
-    {
-        {"shape",   EOption::Shape },
-        {"color",   EOption::Color },
-        {"size",    EOption::Size },
-        {"all",     EOption::All },
-        {"object",  EOption::Object },
-        {"slide",   EOption::Slide },
-        {"from",    EOption::From },
-        {"to",      EOption::To }
-    };
+    //PrepareTranslates();
 }
 
 SToken CTokenizer::NextToken(std::istream& sInput)
@@ -45,66 +20,43 @@ SToken CTokenizer::NextToken(std::istream& sInput)
     std::string sLexemme = m_oLexer.NextLexemme(sInput);
     
     SToken sToken;
-    if (IsOperationKeyword(sLexemme))
-    {
-        sToken.eType = ETokenType::Command;
-        sToken.eOperation = m_oOperationTranslater[sLexemme];
-    }
-    else if (IsOptionKeyword(sLexemme))
-    {
-        sToken.eType = ETokenType::Option;
-        sToken.eOption = m_oOptionTranslater[sLexemme];
-    }
-    else if (IsPunct(sLexemme))
+    if (IsPunct(sLexemme))
     {
         sToken.eType = ETokenType::Punct;
-        sToken.ePunct = m_oPunctTranslater[sLexemme];
+        sToken.cPunct = sLexemme[0];
     }
-    else if (IsNumberValue(sLexemme))
+    else if (IsNumber(sLexemme))
     {
-        sToken.eType = ETokenType::OptionValue;
-        //sToken.oValue.SetNumber(stoi(sLexemme));
+        sToken.eType = ETokenType::Number;
+        sToken.iNumber = std::stoi(sLexemme);
     }
-    else if (IsTextValue(sLexemme))
+    else if (IsWord(sLexemme))
     {
-        sToken.eType = ETokenType::OptionValue;
-        //sToken.oValue.SetText(sLexemme);
+        sToken.eType = ETokenType::Word;
+        sToken.sWord = sLexemme;
     }
-    else
+    else if (sLexemme == "")
     {
-        if (sLexemme == "")
-        {
-            /*CEndOfExprDetection e;
-            throw e;*/
-        }
+        /*CEndOfExprDetection e;
+        throw e;*/
     }
 
     return sToken;
 }
 
-bool CTokenizer::IsOperationKeyword(std::string const& sLexemme) const
-{
-    return m_oOperationTranslater.contains(sLexemme);
-}
-
-bool CTokenizer::IsOptionKeyword(std::string const& sLexemme) const
-{
-    return m_oOptionTranslater.contains(sLexemme);
-}
-
 bool CTokenizer::IsPunct(std::string const& sLexemme) const
 {
-    return m_oPunctTranslater.contains(sLexemme);
+    return sLexemme.size() == 1 && ispunct(sLexemme[0]);
 }
 
-bool CTokenizer::IsNumberValue(std::string const& sLexemme) const
+bool CTokenizer::IsNumber(std::string const& sLexemme) const
 {
     bool bIsNumber = true;
 
     if (sLexemme[0] < '1' || sLexemme[0] > '9')
-        return bIsNumber;
+        return false;
 
-    for (char const& c : sLexemme)
+    for (auto const& c : sLexemme)
     {
         if (!std::isdigit(c))
         {
@@ -116,10 +68,62 @@ bool CTokenizer::IsNumberValue(std::string const& sLexemme) const
     return bIsNumber;
 }
 
-bool CTokenizer::IsTextValue(std::string const& sLexemme) const
+bool CTokenizer::IsWord(std::string const& sLexemme) const
 {
-    return true;
+    bool bIsWord = true;
+
+    for (auto const& c : sLexemme)
+    {
+        if (!isalpha(c) && c != '-')
+        {
+            bIsWord = false;
+            break;
+        }
+    }
+
+    return bIsWord;
 }
+
+//void CTokenizer::PrepareTranslates()
+//{
+//    m_oOperationTranslater = 
+//    {
+//        {"set",		EOperation::Set},
+//        {"reset",	EOperation::Reset},
+//        {"add",     EOperation::Add},
+//        {"clear",	EOperation::Clear},
+//        {"draw",	EOperation::Draw},
+//        {"remove",	EOperation::Remove},
+//        {"move",	EOperation::Move},
+//        {"copy",	EOperation::Copy},
+//        {"save",	EOperation::Save},
+//        {"load",	EOperation::Load},
+//        {"print",	EOperation::Print},
+//        {"help",	EOperation::Help}
+//    };
+//
+//    m_oOptionTranslater =
+//    {
+//        {"--shape",   EOption::Shape },
+//        {"--color",   EOption::Color },
+//        {"--size",    EOption::PencilThickness },
+//        {"--all",     EOption::All },
+//        {"--object",  EOption::Object },
+//        {"--slide",   EOption::Slide },
+//        {"--filepath",EOption::Filepath },
+//        {"--from",    EOption::From },
+//        {"--to",      EOption::To }
+//    };
+//
+//    m_oPunctTranslater =
+//    {
+//        { ",", EPunct::Comma },
+//        { "-", EPunct::Dash },
+//        { "[", EPunct::LeftBracket },
+//        { "]", EPunct::RightBracket }
+//    };
+//}
+
 //////////////////////////////////////////////////////////////////////
 } // namespace Command
 //////////////////////////////////////////////////////////////////////

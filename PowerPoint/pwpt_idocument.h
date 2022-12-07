@@ -6,6 +6,7 @@
 
 #include "console.h"
 #include "pwpt_islidecontainer.h"
+#include "tools.h"
 
 namespace pwpt
 {
@@ -13,36 +14,27 @@ namespace pwpt
 namespace Document
 {
 
-enum class ETool
-{
-	Line,
-	Rectangle,
-	Triangle,
-	Circular,
-	TextBox
-};
-
-enum class ESize
-{
-	Small,
-	Medium,
-	Big
-};
-
 class IDocument
 {
 public:
-	virtual SlideContainer_SharedPtr GetSlideShow() = 0;
-	virtual Slide_SharedPtr GetSlide(size_t iIndex) = 0;
-	virtual size_t& GetCurrentSlideIndex() = 0;
+	virtual SlideContainer_SPtr GetSlideShow() = 0;
+	virtual Slide_SPtr GetSlide(size_t const iIndex) = 0;
+	virtual size_t GetCurrentSlideIndex() = 0;
+	virtual size_t SetSlide(size_t const iIndex) = 0;
 	
-	virtual ETool& GetTool() = 0;
-	virtual ESize& GetLineWidth() = 0;
+	virtual EShape GetShape() = 0;
+	virtual void SetShape(EShape const) = 0;
+
+	virtual ELineThickness GetLineThickness() = 0;
+	virtual void SetLineThickness(ELineThickness const) = 0;
+
+	virtual QColor GetColor() = 0;
+	virtual void SetColor(QColor const) = 0;
 
 }; // interface IDocument
 
 } // namespace Document
-using PwPtDoc_ptr = std::shared_ptr<class Document::IDocument>;
+using PwPtDoc_SPtr = std::shared_ptr<class Document::IDocument>;
 
 } // namespace pwpt
 

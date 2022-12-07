@@ -7,13 +7,10 @@
 #include <QObject>
 
 #include "pwpt_icommand.h"
-#include "pwpt_idoceditor.h"
+//#include "pwpt_idoceditor.h"
 
 namespace pwpt
 {
-
-using ICommandHandler_Ptr = std::unique_ptr<class IHandler>; 
-
 enum class EState
 {
 	success,
@@ -25,15 +22,15 @@ class IHandler : public QObject
 	Q_OBJECT
 
 public:
-	virtual void SetEditor(IDocEditor_Ptr) = 0;
+	//virtual void SetEditor(IDocEditor_SPtr) = 0;
 	
-	virtual EState Handle(ICommand_Ptr&) = 0;
+	virtual EState Handle(ICommand_SPtr&) = 0;
 
 //signals:
 	//virtual void actionConstructed(IACtion_Ptr) = 0;
 
 public slots:
-	virtual void OnCommandConstructed(ICommand_Ptr) = 0;
+	virtual void OnInputDetected(std::string const&) = 0;
 	//(
 	//	[](ICommand_Ptr pCommand) )
 	//	{
@@ -41,7 +38,8 @@ public slots:
 	//	}
 	//);
 
-}; // interface IMachine
+}; // interface IHandler
+using ICommandHandler_UPtr = std::unique_ptr<class IHandler>;
 
 } // namespace pwpt
 

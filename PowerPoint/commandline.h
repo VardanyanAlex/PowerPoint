@@ -17,11 +17,8 @@ public:
 	CCommandLine(CCommandLine const&) = delete;
 	CCommandLine& operator=(CCommandLine const&) = delete;
 
-	void Run() override {};
-	void ProcessInput(DataStream_Ptr) override {};
-
-//SIGNAL:
-//	signal<ICommand_Ptr> sigCommandConstructed;
+	void Run() override;
+	
 };
 
 } // namespace pwpt

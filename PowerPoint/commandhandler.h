@@ -3,7 +3,7 @@
 #define _POWERPOINT_COMMAND_HANDLER_HPP_
 
 #include "pwpt_icommandhandler.h"
-#include "pwpt_idoceditor.h"
+#include "commandparser.h"
 
 namespace pwpt
 {
@@ -19,13 +19,13 @@ public:
 
 	//void SetEditor(CEditor&) override;
 
-	EState Handle(ICommand_Ptr&) override;
+	EState Handle(ICommand_SPtr&) override;
 
 public slots:
-	void OnCommandConstructed(ICommand_Ptr) override;
+	void OnInputDetected(std::string const&) override;
 
 private:
-	IDocEditor_Ptr m_pEditor;
+	Command::CParser m_oParser;
 
 };
 

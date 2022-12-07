@@ -1,12 +1,19 @@
 
+#include "application.h"
 #include "powerpoint.h"
-#include <QtWidgets/QApplication>
+
+#include <QtCore/QCoreApplication>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    pwpt::App::PowerPoint w;
-    w.Exec();
+    using namespace pwpt::App;
+
+    QCoreApplication a(argc, argv);
+    //pwpt::App::PowerPoint w;
     //w.show();
+    
+    CApplication& oApp = CApplication::Instance();
+    oApp.Run();
+
     return a.exec();
 }

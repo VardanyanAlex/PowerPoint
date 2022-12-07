@@ -12,7 +12,7 @@
 namespace pwpt
 {
 
-using ICommandLine_Ptr = std::unique_ptr<class ICommandLine>;
+using ICommandLine_UPtr = std::unique_ptr<class ICommandLine>;
 
 class ICommandLine : public QObject
 {
@@ -22,10 +22,10 @@ public:
 	using DataStream_Ptr = std::unique_ptr<typename std::istream>;
 
 	virtual void Run() = 0;
-	virtual void ProcessInput(DataStream_Ptr) = 0;
+	//virtual void ProcessInput(DataStream_Ptr) = 0;
 
 signals:
-	void commandConstructed(ICommand_Ptr);
+	void InputDetected(std::string const&);
 
 }; // interface ICommandLine
 

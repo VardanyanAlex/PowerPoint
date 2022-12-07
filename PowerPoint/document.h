@@ -1,8 +1,6 @@
 
-#ifndef _POWERPOINT_MACHINE_HPP_
-#define _POWERPOINT_MACHINE_HPP_
-
-#include <memory>
+#ifndef _POWERPOINT_MAIN_DOCUMENT_HPP_
+#define _POWERPOINT_MAIN_DOCUMENT_HPP_
 
 #include "console.h"
 #include "pwpt_islidecontainer.h"
@@ -17,21 +15,23 @@ namespace Document
 class CPwPtDocument : public IDocument
 {
 public:
-	CPwPtDocument() =default;
+	CPwPtDocument() = default;
+	CPwPtDocument(CPwPtDocument const&) = delete;
+	CPwPtDocument& operator=(CPwPtDocument const&) = delete;
 
-	SlideContainer_SharedPtr GetSlideShow() override;
-	Slide_SharedPtr GetSlide(size_t iIndex) override;
-	size_t& GetCurrentSlideIndex() override;
+	SlideContainer_SPtr GetSlideShow() override;
+	Slide_SPtr GetSlide(size_t iIndex) override;
+	size_t GetCurrentSlideIndex() override;
 
-	ETool& GetTool() override;
-	ESize& GetLineWidth() override;
+	EShape GetShape() override;
+	ELineThickness GetLineThickness() override;
 
 private:
-	pwpt::SlideContainer_Ptr	m_pSlideShow;
+	pwpt::SlideContainer_SPtr	m_pSlideShow;
 	size_t						m_nCurrentSlideIndex;
-	ETool						m_eSelectedTool;
+	EShape						m_eSelectedShape;
 	//QColor					m_oSelectedColor;
-	ESize						m_eLineWidth;
+	ELineThickness				m_eLineThickness;
 
 }; // class CPwPtDocument
 
@@ -39,4 +39,4 @@ private:
 
 } // namespace pwpt
 
-#endif // _POWERPOINT_MACHINE_HPP_
+#endif // _POWERPOINT_MAIN_DOCUMENT_HPP_

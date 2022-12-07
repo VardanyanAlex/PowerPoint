@@ -11,35 +11,35 @@ namespace pwpt
 namespace Command
 { 
 //////////////////////////////////////////////////////////////////////
-// CCommand class 
-// interface ICommand impl 
-//////////////////////////////////////////////////////////////////////
-class CCommand : public ICommand
+
+class PrintCmd : public ICommand
 {
 public:
-	CCommand() =default;
+	PrintCmd();
 
-	CCommand(CCommand const&) =delete;
-	CCommand& operator=(CCommand const&) =delete;
-
-// ICommand's functions
-public:
-	EOperation GetCommandType() const override;
-
-	OptionValueMap GetOptions() const override;
-	SOptionValue GetValue(EOption) const override;
-
-public:
-	void SetCommandType(EOperation const);
-	void SetOptionValueMap(OptionValueMap const&);
-
-	void AddOptionAndValue(EOption const, SOptionValue const&);
-
-private:
-	EOperation m_eCommandType = EOperation::Invalid;
-	OptionValueMap m_aOptions;
+	void Execute() override;
+	std::shared_ptr<ICommand> Clone() const override;
+	bool Acceptarg(std::string const&, std::any oValue) override;
+	bool Validate() const override;
 };
-//////////////////////////////////////////////////////////////////////
+
+//class SetCmd : public ICommand
+//{
+//public:
+//	void Execute(OutputDevice_SPtr&) override;
+//	ICommand_SPtr Clone() const override;
+//	bool Acceptarg(std::string const&, std::any oValue) override;
+//	bool Validate() const override;
+//};
+//
+//class ResetCmd : public ICommand
+//{
+//public:
+//	void Execute(OutputDevice_SPtr&) override;
+//	ICommand_SPtr Clone() const override;
+//	bool Acceptarg(std::string const&, std::any oValue) override;
+//	bool Validate() const override;
+//};
 
 } // namespace Command
 //////////////////////////////////////////////////////////////////////
