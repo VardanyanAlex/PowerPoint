@@ -23,6 +23,7 @@ public:
 
 public slots:
 	void OnInputDetected(std::string const&) override;
+	void OnCommandCreatedAction(IAction_SPtr&) override;
 
 private:
 	Command::CParser m_oParser;

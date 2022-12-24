@@ -13,17 +13,6 @@ namespace pwpt
 class CSlide : public pwpt::ISlide
 {
 public:
-
-    CSlide() = default;
-
-    ~CSlide();
-
-    CSlide(CSlide const&);
-    CSlide& operator=(CSlide);
-
-    CSlide(CSlide&&) noexcept;
-    CSlide& operator=(CSlide&&) noexcept;
-
     // Capacity
     bool IsEmpty() const override;
     size_type GetCount() const override;
@@ -40,10 +29,12 @@ public:
 
     void Remove(QPointF const& pObjectsCenter) override;
 
-    void Add(IObject_SPtr&& oObject, QPointF const& pLeftTop) override;
+    void Add(IObject_SPtr pObject) override;
 
     // if input qpoint is in any shape returns it
-    IObject_SPtr GetObject(QPointF) const override;
+    IObject_SPtr GetObject(QPointF const&) const override;
+
+    ObjectList GetObjects(QPointF pLeftTop, QPointF pRightBottom) const override;
 
     std::deque<IObject_SPtr> GetObjects() const override;
 

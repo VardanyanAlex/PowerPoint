@@ -90,8 +90,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="actionfactory.cpp" />
+    <ClCompile Include="actionmachine.cpp" />
+    <ClCompile Include="act_addslide.cpp" />
+    <ClCompile Include="act_deleteslide.cpp" />
+    <ClCompile Include="act_redo.cpp" />
+    <ClCompile Include="act_undo.cpp" />
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="cmd_add.cpp" />
+    <ClCompile Include="cmd_help.cpp" />
+    <ClCompile Include="cmd_redo.cpp" />
+    <ClCompile Include="cmd_undo.cpp" />
     <ClCompile Include="commandfactory.cpp" />
     <ClCompile Include="commandline.cpp" />
     <ClCompile Include="commandparser.cpp" />
@@ -99,14 +107,21 @@
     <ClCompile Include="document.cpp" />
     <ClCompile Include="errorhandling.cpp" />
     <ClCompile Include="object.cpp" />
-    <ClCompile Include="outputconsole.cpp" />
+    <ClCompile Include="pwpt_app.cpp" />
+    <ClCompile Include="pwpt_appmanager.cpp" />
     <ClCompile Include="pwpt_iaction.cpp" />
+    <ClCompile Include="pwpt_icommand.impl.cpp" />
+    <ClCompile Include="pwpt_ipainter.cpp" />
+    <ClCompile Include="shape.cpp" />
+    <ClCompile Include="slide.cpp" />
+    <ClCompile Include="slideshow.cpp" />
+    <ClCompile Include="streampainter.cpp" />
     <ClCompile Include="token.cpp" />
     <ClCompile Include="toolbar_actions.cpp" />
     <QtRcc Include="powerpoint.qrc" />
     <QtUic Include="powerpoint.ui" />
     <QtMoc Include="powerpoint.h" />
-    <ClCompile Include="command.cpp" />
+    <ClCompile Include="cmd_print.cpp" />
     <ClCompile Include="commandhandler.cpp" />
     <ClCompile Include="commandlexer.cpp" />
     <ClCompile Include="commandtokenizer.cpp" />
@@ -116,9 +131,16 @@
     <ResourceCompile Include="PowerPoint.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="actionfactory.h" />
+    <ClInclude Include="act_addslide.h" />
+    <ClInclude Include="act_deleteslide.h" />
+    <ClInclude Include="act_redo.h" />
+    <ClInclude Include="act_undo.h" />
     <ClInclude Include="application.h" />
-    <ClInclude Include="command.h" />
+    <ClInclude Include="cmd_add.h" />
+    <ClInclude Include="cmd_help.h" />
+    <ClInclude Include="cmd_print.h" />
+    <ClInclude Include="cmd_redo.h" />
+    <ClInclude Include="cmd_undo.h" />
     <ClInclude Include="commandfactory.h" />
     <ClInclude Include="commandhandler.h" />
     <ClInclude Include="commandlexer.h" />
@@ -126,28 +148,30 @@
     <ClInclude Include="commandparser.h" />
     <ClInclude Include="commandscomponents.h" />
     <ClInclude Include="commandtokenizer.h" />
-    <ClInclude Include="console.h" />
     <ClInclude Include="errorhandling.h" />
-    <ClInclude Include="machine.h" />
+    <ClInclude Include="actionmachine.h" />
     <ClInclude Include="document.h" />
     <ClInclude Include="object.h" />
-    <ClInclude Include="outputconsole.h" />
+    <ClInclude Include="pwpt_appmanager.h" />
     <ClInclude Include="pwpt_iaction.h" />
-    <ClInclude Include="pwpt_icommand.h" />
-    <ClInclude Include="pwpt_icommand.impl.h" />
+    <ClInclude Include="pwpt_app.h" />
+    <QtMoc Include="pwpt_icommand.h" />
     <ClInclude Include="pwpt_iobject.h" />
     <ClInclude Include="pwpt_ioutputdevice.h" />
+    <ClInclude Include="pwpt_ipainter.h" />
+    <ClInclude Include="shape.h" />
+    <ClInclude Include="streampainter.h" />
     <ClInclude Include="toolbar_actions.h" />
     <ClInclude Include="tools.h" />
     <QtMoc Include="pwpt_icommandhandler.h" />
     <QtMoc Include="pwpt_icommandline.h" />
-    <ClInclude Include="pwpt_imachine.h" />
+    <QtMoc Include="pwpt_imachine.h" />
     <ClInclude Include="pwpt_idocument.h" />
     <ClInclude Include="pwpt_islide.h" />
     <ClInclude Include="pwpt_islidecontainer.h" />
     <ClInclude Include="slide.h" />
     <ClInclude Include="slideshow.h" />
-    <ClInclude Include="taskmachine.h" />
+    <ClInclude Include="actionmachine.h" />
     <ClInclude Include="token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,6 +1,7 @@
 
-#include "actionfactory.h"
+#include "pwpt_appmanager.h"
 #include "commandhandler.h"
+#include "streampainter.h"
 
 namespace pwpt
 {
@@ -10,21 +11,52 @@ CCommandHandler::CCommandHandler()
 
 EState CCommandHandler::Handle(ICommand_SPtr& pCommand)
 {
-	//CActionFactory& oFactory = CActionFactory::GetInstance();
+	EState eCommandExecStatus = EState::success;
 
-	pCommand->Execute()
+	QObject::connect(pCommand.get(),  &Command::ICommand::CreatedAction, this, &IHandler::OnCommandCreatedAction);
 
-	//IAction_SPtr pAction = oFactory.CreateAction(pCommand);
+	try
+	{
+		pCommand->Execute();
+	}
+	catch (std::exception const& ex) 
+	{
+		std::ostream* pOutput = App::CAppManager::AppInstance().GetOutputStreamDevice();
+		*pOutput << ex.what();
 
-	return EState::success;
+		eCommandExecStatus = EState::failure;
+	}
+
+	return eCommandExecStatus;
 }
 
 void CCommandHandler::OnInputDetected(std::string const& sInput)
 {
 	std::stringstream sInputStream{ sInput };
-	ICommand_SPtr oCmd = m_oParser.Parse(sInputStream);
 
-	Handle(oCmd);
+	ICommand_SPtr pCmd = nullptr;
+	std::ostream* pOutput = App::CAppManager::AppInstance().GetOutputStreamDevice();
+	
+	try
+	{
+		pCmd = m_oParser.Parse(sInputStream);
+
+		EState eCommandExecStatus = Handle(pCmd);
+
+		if (eCommandExecStatus == EState::success)
+			*pOutput << "--> Command executed successfully\n\n";
+		else
+			*pOutput << "--> Failed to execute command\n\n";
+	}
+	catch (std::exception const& ex)
+	{
+		*pOutput << ex.what();
+	}
+}
+
+void CCommandHandler::OnCommandCreatedAction(IAction_SPtr& pAction)
+{
+	emit ActionConstructed(pAction);
 }
 
 }

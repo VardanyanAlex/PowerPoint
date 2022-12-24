@@ -6,11 +6,12 @@
 
 #include <QObject>
 
+#include "pwpt_iaction.h"
 #include "pwpt_icommand.h"
-//#include "pwpt_idoceditor.h"
 
 namespace pwpt
 {
+
 enum class EState
 {
 	success,
@@ -22,21 +23,14 @@ class IHandler : public QObject
 	Q_OBJECT
 
 public:
-	//virtual void SetEditor(IDocEditor_SPtr) = 0;
-	
 	virtual EState Handle(ICommand_SPtr&) = 0;
 
-//signals:
-	//virtual void actionConstructed(IACtion_Ptr) = 0;
+signals:
+	void ActionConstructed(IAction_SPtr&);
 
 public slots:
 	virtual void OnInputDetected(std::string const&) = 0;
-	//(
-	//	[](ICommand_Ptr pCommand) )
-	//	{
-	//	//std::cout << "We received: " << input << std::endl;
-	//	}
-	//);
+	virtual void OnCommandCreatedAction(IAction_SPtr&) = 0;
 
 }; // interface IHandler
 using ICommandHandler_UPtr = std::unique_ptr<class IHandler>;

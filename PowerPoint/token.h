@@ -2,6 +2,7 @@
 #ifndef _POWERPOINT_COMMAND_TOKEN_HPP_
 #define _POWERPOINT_COMMAND_TOKEN_HPP_
 
+#include <any>
 #include <map>
 #include <string>
 
@@ -37,6 +38,8 @@ enum class EPunct
 //////////////////////////////////////////////////////////////
 struct SToken
 {
+	std::any GetValue() const;
+
 	ETokenType eType = ETokenType::Invalid;
 
 	union

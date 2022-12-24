@@ -28,19 +28,19 @@ public:
 
     virtual void Remove(QPointF const& pObjectsCenter) = 0;
 
-    virtual void Add(IObject_SPtr&& oObject, QPointF const& pLeftTop) = 0;
+    virtual void Add(IObject_SPtr oObject) = 0;
 
     // if input qpoint is in any shape returns it
-    virtual IObject_SPtr GetObject(QPointF) const = 0;
+    virtual IObject_SPtr GetObject(QPointF const&) const = 0;
 
     // return objects group in area from leftTop to rightBottom
-    virtual std::deque<IObject_SPtr> GetObjects(QPointF pLeftTop, QPointF pRightBottom) const = 0;
-
-    virtual std::deque<IObject_SPtr> GetObjects() const = 0;
+    virtual ObjectList GetObjects(QPointF pLeftTop, QPointF pRightBottom) const = 0;
+    
+    virtual ObjectList GetObjects() const = 0;
 
 }; // interface ISlide
-using Slide_UPtr = std::unique_ptr<class ISlide>;
-using Slide_SPtr = std::shared_ptr<class ISlide>;
+using ISlide_UPtr = std::unique_ptr<class ISlide>;
+using ISlide_SPtr = std::shared_ptr<class ISlide>;
 
 } // namespace pwpt
 

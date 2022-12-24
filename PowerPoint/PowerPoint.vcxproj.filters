@@ -55,7 +55,7 @@
     <ClCompile Include="commandtokenizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="command.cpp">
+    <ClCompile Include="cmd_print.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="token.cpp">
@@ -79,9 +79,6 @@
     <ClCompile Include="errorhandling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="actionfactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="commandscomponents,cpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -94,12 +91,60 @@
     <ClCompile Include="object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="outputconsole.cpp">
+    <ClCompile Include="streampainter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pwpt_appmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pwpt_app.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pwpt_icommand.impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pwpt_ipainter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd_add.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="act_addslide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="act_deleteslide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="slideshow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="slide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="actionmachine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd_help.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd_undo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="act_undo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="act_redo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd_redo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="command.h">
+    <ClInclude Include="cmd_print.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="commandhandler.h">
@@ -117,13 +162,7 @@
     <ClInclude Include="commandtokenizer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="document.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pwpt_icommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pwpt_islide.h">
@@ -138,19 +177,16 @@
     <ClInclude Include="slideshow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="taskmachine.h">
+    <ClInclude Include="actionmachine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="token.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pwpt_imachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="pwpt_idocument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="machine.h">
+    <ClInclude Include="actionmachine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="application.h">
@@ -168,9 +204,6 @@
     <ClInclude Include="errorhandling.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="actionfactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="commandscomponents.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -186,10 +219,43 @@
     <ClInclude Include="pwpt_ioutputdevice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="outputconsole.h">
+    <ClInclude Include="pwpt_ipainter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pwpt_icommand.impl.h">
+    <ClInclude Include="streampainter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pwpt_app.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pwpt_appmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cmd_add.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="act_addslide.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="act_deleteslide.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cmd_help.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cmd_undo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="act_undo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="act_redo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cmd_redo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -198,6 +264,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="pwpt_icommandhandler.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="pwpt_imachine.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="pwpt_icommand.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

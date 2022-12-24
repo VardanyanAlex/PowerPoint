@@ -4,7 +4,7 @@
 
 #include <memory>
 
-#include "document.h"
+#include "pwpt_app.h"
 #include "pwpt_icommandhandler.h"
 #include "pwpt_icommandline.h"
 #include "pwpt_imachine.h"
@@ -15,28 +15,22 @@ namespace pwpt
 namespace App
 {
 
-class CApplication
+class CPowerpointApp : public CApp
 { // singleton
 public:
-	CApplication(CApplication const&) = delete;
-	CApplication& operator=(CApplication const&) = delete;
+	CPowerpointApp();
+	CPowerpointApp(CPowerpointApp const&) = delete;
+	CPowerpointApp& operator=(CPowerpointApp const&) = delete;
 
-	static CApplication& Instance();
-
-	void Run();
-	PwPtDoc_SPtr GetDocument() const;
-
-private:
-	CApplication();
+	// CApp interface
+	void Run() override;
 
 private:
 	ICommandLine_UPtr		m_pConsole = nullptr;
 	ICommandHandler_UPtr	m_pCommandHandler = nullptr;
-	IMachine_SPtr			m_pActionMachine;
+	IMachine_UPtr			m_pActionMachine;
 
-	PwPtDoc_SPtr			m_pDocument;
-
-}; // class CApplication
+}; // class CPowerpointApp
 
 } // namespace App
 

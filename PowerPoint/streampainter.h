@@ -13,7 +13,10 @@ namespace pwpt
 class CStreamPainter : public IPainter
 {
 public:
-	CStreamPainter(std::shared_ptr<std::ostream> pPaintDevice);
+	CStreamPainter(std::ostream* = &std::cout);
+
+	void Draw(CShape const&, double x1, double y1, double x2, double y2, QColor = Qt::black) override;
+	void Draw(CShape const&, QPointF const& p1, QPointF const& p2, QColor = Qt::black) override;
 
 	void DrawLine(double x1, double y1, double x2, double y2, QColor = Qt::black) override;
 	void DrawLine(QPointF const& p1, QPointF const& p2, QColor = Qt::black) override;
@@ -30,7 +33,7 @@ private:
 	void PrintGeometry(double x1, double y1, double x2, double y2);
 
 private:
-	std::shared_ptr<std::ostream> m_pOutput;
+	std::ostream* m_pOutput = nullptr;
 };
 
 } // namespace pwpt

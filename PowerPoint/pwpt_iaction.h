@@ -2,28 +2,35 @@
 #ifndef _POWERPOINT_INTERFACE_ACTION_HPP_
 #define _POWERPOINT_INTERFACE_ACTION_HPP_
 
+#include <exception>
 #include <memory>
-
-#include "pwpt_idocument.h"
+#include <string>
 
 namespace pwpt
 {
+
+class IAction;
+using IAction_SPtr = std::shared_ptr<class IAction>;
 
 class IAction 
 {
 public:
 	virtual void Run() = 0;
+	virtual bool CanRun() const = 0;
 
-	void SetDocument(PwPtDoc_SPtr&);
-	
-protected:
-	void CheckDocumentValidity() const;
-
-protected:
-	PwPtDoc_SPtr m_pDoc = nullptr;
-
+	virtual IAction_SPtr Reverse() const = 0;
 };
-using IAction_SPtr = std::shared_ptr<IAction>;
+
+class CActionExecException : public std::exception
+{
+public:
+	CActionExecException(std::string const&);
+
+	const char* what() const noexcept override;
+
+private:
+	std::string m_sErrorMessage;
+};
 
 } // namespace pwpt
 

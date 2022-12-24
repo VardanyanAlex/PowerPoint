@@ -5,15 +5,14 @@
 namespace pwpt
 {
 
-	void IAction::SetDocument(PwPtDoc_SPtr& pDoc)
-	{
-		m_pDoc = pDoc;
-	}
+CActionExecException::CActionExecException(std::string const& sErrorMessage)
+	: m_sErrorMessage{ sErrorMessage + "\n\n"}
+{
+}
 
-	void IAction::CheckDocumentValidity() const
-	{
-		if (m_pDoc == nullptr)
-			throw CError{ "There is no document to work with..." };
-	}
+const char* CActionExecException::what() const noexcept
+{
+	return m_sErrorMessage.c_str();
+}
 
 } // namespace pwpt

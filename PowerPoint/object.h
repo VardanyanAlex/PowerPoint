@@ -12,17 +12,17 @@ class CObject : public IObject
 public:
 	QPointF GetCenter() const override;
 	QPair<QPointF, QPointF> GetGeometry() const override;
-	EShape GetShape() const override;
+	CShape GetShape() const override;
 	QColor GetColor() const override;
 
 	void SetCenter(QPointF const&) override;
 	void SetGeometry(QPointF const&, QPointF const&) override;
-	void SetShape(EShape const&) override;
+	void SetShape(CShape const&) override;
 	void SetColor(QColor const&) override;
 
 private:
 	QPointF m_oCenter;
-	EShape m_eShape;
+	CShape m_eShape;
 	QColor m_oColor;
 
 	QPointF m_oLeftTopPos;

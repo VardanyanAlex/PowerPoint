@@ -12,9 +12,9 @@ namespace pwpt
 class IOutputDevice
 {
 public:
-	virtual void Draw(IObject_SPtr) = 0;
+	//virtual void Draw(IObject_SPtr) = 0;
 };
-using OutputDevice_SPtr = std::shared_ptr<IOutputDevice>;
+using OutputDevice_SPtr = std::shared_ptr<class IOutputDevice>;
 
 } // namespace pwpt
 

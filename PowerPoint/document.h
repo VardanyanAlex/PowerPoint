@@ -2,7 +2,6 @@
 #ifndef _POWERPOINT_MAIN_DOCUMENT_HPP_
 #define _POWERPOINT_MAIN_DOCUMENT_HPP_
 
-#include "console.h"
 #include "pwpt_islidecontainer.h"
 #include "pwpt_idocument.h"
 
@@ -15,22 +14,28 @@ namespace Document
 class CPwPtDocument : public IDocument
 {
 public:
-	CPwPtDocument() = default;
+	CPwPtDocument();
 	CPwPtDocument(CPwPtDocument const&) = delete;
 	CPwPtDocument& operator=(CPwPtDocument const&) = delete;
 
-	SlideContainer_SPtr GetSlideShow() override;
-	Slide_SPtr GetSlide(size_t iIndex) override;
-	size_t GetCurrentSlideIndex() override;
-
-	EShape GetShape() override;
-	ELineThickness GetLineThickness() override;
+	ISlideContainer_SPtr GetSlideShow() override;
+	int GetActiveSlideIndex() const override;
+	void SetActiveSlide(size_t const iIndex) override;
+	
+	CShape GetShape() override;
+	void SetShape(CShape const&) override;
+	
+	ELineThickness GetLineThickness() const override;
+	void SetLineThickness(ELineThickness const) override;
+	
+	QColor GetColor() const override;
+	void SetColor(QColor const) override;
 
 private:
-	pwpt::SlideContainer_SPtr	m_pSlideShow;
-	size_t						m_nCurrentSlideIndex;
-	EShape						m_eSelectedShape;
-	//QColor					m_oSelectedColor;
+	pwpt::ISlideContainer_SPtr	m_pSlideShow;
+	int							m_nActiveSlideIndex;
+	CShape						m_eSelectedShape;
+	QColor						m_oSelectedColor;
 	ELineThickness				m_eLineThickness;
 
 }; // class CPwPtDocument

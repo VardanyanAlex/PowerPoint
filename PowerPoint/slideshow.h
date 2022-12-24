@@ -4,7 +4,11 @@
 
 #include <list>
 
+#include "pwpt_islide.h"
 #include "pwpt_islidecontainer.h"
+
+namespace pwpt
+{
 
 class CSlideShow : public pwpt::ISlideContainer
 {
@@ -13,8 +17,6 @@ public:
 
     CSlideShow() = default;
 
-    ~CSlideShow();
-
     CSlideShow(CSlideShow const&) =delete;
     CSlideShow& operator=(CSlideShow) =delete;
 
@@ -22,25 +24,27 @@ public:
     CSlideShow& operator=(CSlideShow&&) =delete;
 
     // Capacity
-    bool Empty();
-    size_type Count();
+    bool IsEmpty() const override;
+    size_type Count() const override;
 
     // Modifiers
 
     // clear all slides
-    void Clear();
+    void Clear() override;
 
     // removes nCount slides from nSlideIndex index
-    void Remove(unsigned nSlideIndex, size_type nCount = 1);
+    void Remove(int nSlideIndex, size_type nCount = 1) override;
 
-    void Add(CSlide&&);
+    void Add(ISlide_SPtr) override;
 
-    void Insert(CSlide&&, unsigned nIndex);
+    void Insert(ISlide_SPtr, int nIndex) override;
 
-    CSlide& GetSlide(unsigned nIndex);
+    ISlide_SPtr GetSlide(int nIndex) const override;
 
 private:
-    std::list<CSlide> m_aSlides;
+    std::list<ISlide_SPtr> m_aSlides;
 };
+
+} // namespace pwpt
 
 #endif // _POWERPOINT_SLIDESHOW_MODEL_HPP

@@ -14,7 +14,7 @@ QPair<QPointF, QPointF> CObject::GetGeometry() const
 	return QPair<QPointF, QPointF>{m_oLeftTopPos, m_oRightBottomPos};
 }
 
-EShape CObject::GetShape() const 
+CShape CObject::GetShape() const
 {
 	return m_eShape;
 }
@@ -47,7 +47,7 @@ void CObject::SetGeometry(QPointF const& oLeftTop, QPointF const& oRightBottom)
 	m_oCenter.setY((m_oLeftTopPos.y() + m_oRightBottomPos.y()) / 2);
 }
 
-void CObject::SetShape(EShape const& eShape) 
+void CObject::SetShape(CShape const& eShape)
 {
 	m_eShape = eShape;
 }
